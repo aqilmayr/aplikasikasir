@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('detail_penjualans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('role',['admin','petugas'])->default('petugas');
-            $table->rememberToken();
+            $table->unsignedBigInteger('PenjualanId');
+            $table->unsignedBigInteger('ProdukId');
+            $table->integer('JumlahProduk');
+            $table->decimal('SubTotal', 10, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('detail_penjualans');
     }
 };
